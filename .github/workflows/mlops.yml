@@ -33,5 +33,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: model.pkl
+          make_latest: true
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}

@@ -15,6 +15,10 @@ species_map = {
     2: "virginica"
 }
 
+# load model
+MODEL_PATH = "model.pkl"
+MODEL_URL = "https://github.com/Ssebi1/mlops/releases/download/v1.0/model.pkl"
+
 
 class Input(BaseModel):
     data: list[float]
