@@ -29,8 +29,9 @@ jobs:
       - name: Run tests
         run: python test_model.py
 
-      - name: Upload trained model
-        uses: actions/upload-artifact@v4
+      - name: Upload model to GitHub Release
+        uses: softprops/action-gh-release@v1
         with:
-          name: trained-model
-          path: model.pkl
+          files: model.pkl
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
