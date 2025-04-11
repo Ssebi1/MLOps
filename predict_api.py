@@ -8,7 +8,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 app = FastAPI()
-model = joblib.load("model.pkl")
 SECRET_TOKEN = os.getenv("SECRET_TOKEN")
 species_map = {
     0: "setosa",
@@ -18,12 +17,14 @@ species_map = {
 
 # load model
 MODEL_PATH = "model.pkl"
-MODEL_URL = "https://github.com/Ssebi1/mlops/releases/download/latest/model.pkl"
+MODEL_URL = "https://github.com/Ssebi1/mlops/releases/download/1/model.pkl"
 
 if not os.path.exists(MODEL_PATH):
     r = requests.get(MODEL_URL)
     with open(MODEL_PATH, 'wb') as f:
         f.write(r.content)
+
+model = joblib.load("model.pkl")
 
 
 class Input(BaseModel):
