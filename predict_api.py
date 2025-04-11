@@ -3,6 +3,7 @@ import os
 from fastapi import FastAPI, Header, HTTPException
 from pydantic import BaseModel
 import joblib
+import requests
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -17,7 +18,12 @@ species_map = {
 
 # load model
 MODEL_PATH = "model.pkl"
-MODEL_URL = "https://github.com/Ssebi1/mlops/releases/download/v1.0/model.pkl"
+MODEL_URL = "https://github.com/Ssebi1/mlops/releases/download/latest/model.pkl"
+
+if not os.path.exists(MODEL_PATH):
+    r = requests.get(MODEL_URL)
+    with open(MODEL_PATH, 'wb') as f:
+        f.write(r.content)
 
 
 class Input(BaseModel):
